@@ -17,7 +17,8 @@ class CallPage extends StatefulWidget {
   final ClientRole role;
 
   /// Creates a call page with given channel name.
-  const CallPage({Key key, this.channelName, this.role}) : super(key: key);
+  const CallPage({Key? key, required this.channelName, required this.role})
+      : super(key: key);
 
   @override
   _CallPageState createState() => _CallPageState();
@@ -27,7 +28,7 @@ class _CallPageState extends State<CallPage> {
   final _users = <int>[];
   final _infoStrings = <String>[];
   bool muted = false;
-  RtcEngine _engine;
+  late RtcEngine _engine;
   String APP_ID = 'paste your app id';
   String token = 'paste your token';
 
@@ -63,7 +64,7 @@ class _CallPageState extends State<CallPage> {
     _addAgoraEventHandlers();
     await _engine.enableWebSdkInteroperability(true);
     VideoEncoderConfiguration configuration = VideoEncoderConfiguration();
-    configuration.dimensions = VideoDimensions(1920, 1080);
+    configuration.dimensions = VideoDimensions();
     await _engine.setVideoEncoderConfiguration(configuration);
     await _engine.joinChannel(token, widget.channelName, null, 0);
   }
@@ -240,7 +241,7 @@ class _CallPageState extends State<CallPage> {
             itemCount: _infoStrings.length,
             itemBuilder: (BuildContext context, int index) {
               if (_infoStrings.isEmpty) {
-                return null;
+                return SizedBox();
               }
               return Padding(
                 padding: const EdgeInsets.symmetric(
