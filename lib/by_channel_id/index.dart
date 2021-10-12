@@ -1,8 +1,12 @@
 import 'dart:async';
 
 import 'package:agora_io_flutter/by_channel_id/call.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:permission_handler/permission_handler.dart';
 
 ///
@@ -65,9 +69,9 @@ class IndexState extends State<IndexPage> {
                     leading: Radio(
                       value: ClientRole.Broadcaster,
                       groupValue: _role,
-                      onChanged: (ClientRole value) {
+                      onChanged: (ClientRole? value) {
                         setState(() {
-                          _role = value;
+                          _role = value!;
                         });
                       },
                     ),
@@ -77,9 +81,9 @@ class IndexState extends State<IndexPage> {
                     leading: Radio(
                       value: ClientRole.Audience,
                       groupValue: _role,
-                      onChanged: (ClientRole value) {
+                      onChanged: (ClientRole? value) {
                         setState(() {
-                          _role = value;
+                          _role = value!;
                         });
                       },
                     ),
